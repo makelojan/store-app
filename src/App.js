@@ -1,16 +1,22 @@
 import React from 'react';
-import {SafeAreaView, StyleSheet, FlatList, Text} from 'react-native';
+import {SafeAreaView, StyleSheet, FlatList, Text, View} from 'react-native';
 import data from './data.json';
 import Header from './components/Header';
 import Card from './components/Card';
 
 const App = () => {
+  const renderCards = ({item}) => {
+    return(
+      <Card product={item}/>
+    );
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <Header />
-      <FlatList 
+      <FlatList
         data={data}
-        renderItem={({item})=><Text>{item.title}</Text>}
+        renderItem={renderCards}
         numColumns='2'
       />
     </SafeAreaView>
@@ -19,7 +25,8 @@ const App = () => {
 
 const styles = StyleSheet.create({
   container: {
-    margin: 15
+    margin: 15,
+    flex: 1
   }
 });
 
